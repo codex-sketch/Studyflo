@@ -1,0 +1,50 @@
+/* ==========================================================
+   Quiz screen
+   ========================================================== */
+
+.quiz-wrap { max-width: 820px; }
+#quiz-done .panel { margin-bottom: 1rem; }
+
+.quiz-top { display: flex; justify-content: space-between; align-items: center; font-weight: 700; margin-bottom: .6rem; }
+.quiz-timer { font-family: var(--font-mono); font-size: 1.15rem; }
+.quiz-timer.low { color: var(--danger); }
+#quiz-bar { transition: width .3s; }
+#quiz-play .bar { margin: 0 0 1.5rem; height: 8px; }
+
+.quiz-field { border: 0; padding: 0; margin: 0 0 1rem; min-width: 0; }
+.quiz-field legend { padding: 0; margin-bottom: 1rem; font-size: 1.35rem; font-weight: 700; line-height: 1.35; }
+
+.opt {
+  display: flex; align-items: center; gap: .8rem; padding: 1rem; margin-bottom: .6rem;
+  background: var(--bg); border: 1px solid var(--line); border-radius: 12px; cursor: pointer;
+}
+.opt:hover { border-color: var(--accent-text); }
+.opt input { width: 20px; height: 20px; accent-color: var(--accent); flex: none; }
+.opt:has(input:checked) { border-color: var(--accent-text); background: var(--surface-2); }
+.opt.correct { border-color: var(--t-img); background: color-mix(in srgb, var(--t-img) 18%, transparent); }
+.opt.wrong { border-color: var(--danger); background: color-mix(in srgb, var(--danger) 15%, transparent); }
+.opt em { margin-left: auto; font-style: normal; font-weight: 700; font-size: .85rem; }
+
+.quiz-feedback { min-height: 1.5rem; margin-bottom: 1rem; }
+.quiz-feedback strong { display: block; }
+.quiz-feedback p { margin: .25rem 0 0; color: var(--muted); }
+
+/* Results */
+.result { display: flex; align-items: center; gap: 1.75rem; flex-wrap: wrap; }
+.score-ring {
+  --pct: 0; position: relative; flex: none; width: 130px; height: 130px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: conic-gradient(var(--accent) calc(var(--pct) * 1%), var(--surface-2) 0);
+}
+.score-ring::before { content: ""; position: absolute; inset: 12px; border-radius: 50%; background: var(--surface); }
+.score-ring strong { position: relative; font-size: 1.8rem; }
+
+.review { list-style: none; margin: 0; padding: 0; }
+.review li { padding: 1rem 0; border-top: 1px solid var(--line); }
+.review li:first-child { border-top: 0; }
+.review strong { display: block; margin-bottom: .35rem; }
+.review p { margin: 0 0 .2rem; }
+.review .why { color: var(--muted); }
+
+.end-btn { margin-left: auto; }
+#quiz-note { margin: 0 0 1rem; padding: .6rem .8rem; background: var(--surface-2); border-radius: 8px; }

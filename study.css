@@ -1,0 +1,59 @@
+/* ==========================================================
+   Study and Flashcards screens
+   ========================================================== */
+
+/* Shared form bits */
+textarea {
+  width: 100%; padding: .8rem 1rem; margin-bottom: 1rem; font: inherit; line-height: 1.5;
+  color: var(--text); background: var(--bg);
+  border: 1px solid var(--line); border-radius: 10px; resize: vertical;
+}
+textarea::placeholder { color: var(--muted); }
+input.full { width: 100%; margin-bottom: 1rem; flex: none; }
+.hint { color: var(--muted); font-size: .95rem; }
+.btn.ghost { background: transparent; color: var(--text); border: 1px solid var(--line); }
+.btn.ghost:hover { background: var(--surface-2); filter: none; }
+.link-btn { background: none; border: 0; padding: .4rem; color: var(--accent-text); font: inherit; font-weight: 700; cursor: pointer; }
+
+#study-setup .row, #view-study .btn.wide + .btn.wide { margin-top: .25rem; }
+
+/* Study layout: reader on the left, marked list on the right (PC) */
+.study-grid, .cards-grid { display: grid; gap: 1.25rem; align-items: start; }
+.study-grid .panel, .cards-grid .panel { margin: 0; }
+@media (min-width: 1000px) {
+  .study-grid { grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); }
+  .cards-grid { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); }
+}
+
+.reader-bar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+.reader-bar h2 { margin: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.reader {
+  max-height: 65vh; overflow: auto; padding: 1rem; border-radius: 10px;
+  background: var(--bg); border: 1px solid var(--line);
+  white-space: pre-wrap; line-height: 1.85; font-size: 1.05rem;
+}
+mark { background: color-mix(in srgb, var(--accent) 38%, transparent); color: inherit; border-radius: 3px; padding: 0 2px; }
+mark.done { background: color-mix(in srgb, var(--t-img) 38%, transparent); }
+
+.marks { list-style: none; margin: 0 0 1rem; padding: 0; display: grid; gap: .6rem; }
+.marks li { display: flex; gap: .75rem; align-items: flex-start; justify-content: space-between; padding: .75rem; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; }
+.marks p { margin: 0; flex: 1; font-size: .95rem; overflow-wrap: anywhere; }
+.marks small { display: block; color: var(--accent-text); font-weight: 700; margin-top: .25rem; }
+
+/* Flashcards */
+.deck-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: .5rem; color: var(--muted); }
+.card3d { perspective: 1200px; }
+.flipcard { display: block; width: 100%; height: clamp(250px, 42vh, 400px); padding: 0; border: 0; background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+.card-inner { display: block; position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform .5s; }
+.card-inner.flipped { transform: rotateY(180deg); }
+.face {
+  position: absolute; inset: 0; display: flex; flex-direction: column; gap: .75rem;
+  padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--line);
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  overflow: auto; font-size: 1.2rem; line-height: 1.6; white-space: pre-wrap;
+}
+.face small { font-size: .85rem; font-weight: 700; opacity: .75; }
+.face.front { background: var(--surface); }
+.face.back { background: var(--accent); border-color: var(--accent); color: #fff; transform: rotateY(180deg); }
+.deck-controls { display: flex; gap: .6rem; margin-top: 1rem; }
+.deck-controls .btn { flex: 1; justify-content: center; }
